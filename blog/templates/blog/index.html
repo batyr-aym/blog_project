@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Блог</title>
+</head>
+<body>
+
+<header>
+    <h1>Color Blog</h1>
+    <form method="POST" action="{% url 'logout'%}">
+        {% csrf_token %}
+        <button type="submit" class='button-logout'>Выйти</button>
+    </form>
+</header>
+
+<div class="container">
+
+    <!-- Форма для создания нового поста -->
+    <div class="post-form">
+        <h2>Опубликовать новый пост</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Заголовок" required>
+            <textarea name="content" placeholder="Описание" rows="5" required></textarea>
+            <button type="submit">Опубликовать</button>
+        </form>
+    </div>
+
+    <!-- Лента постов -->
+    {% for post in posts %}
+    <div class="post" style="background-color: {{ post.user.user_site.color }}">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.description }}</p>
+        <div class="post-meta">
+            <p>Дата создания: {{ post.created_time }}</p>
+            <p>Автор: {{ post.user }}</p>
+        </div>
+    
+        <!-- Форма для добавления комментария -->
+        <div class="comment-form">
+            <h4>Добавить комментарий</h4>
+            <form method="POST" action="{% url 'add_comment' post.id %}">
+                {% csrf_token %}
+                <textarea name="content" placeholder="Ваш комментарий..." rows="3" required></textarea>
+                <button type="submit">Оставить комментарий</button>
+            </form>
+        </div>
+    
+        <!-- Лента комментариев -->
+        <div class="comments">
+            {% for comment in post.coments.all %}
+            <div class="comment">
+                <p><strong>{{ comment.user.username }}</strong> ({{ comment.created_time }})</p>
+                <p>{{ comment.description }}</p>
+            </div>
+            {% empty %}
+            <p>Пока нет комментариев.</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<footer>
+    <p>&copy; 2025 Color Blog. Все права защищены.</p>
+</footer>
+
+</body>
+</html>

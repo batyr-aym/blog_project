@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Личный кабинет</h1>
+        <div class="profile-card" style="background-color: {{ user_site.color }}">
+            <img src="/static/images/user-avatar.png" alt="Аватар" class="avatar">
+            <h2>{{ user.username }}</h2>
+            <p>Email: {{ user.email }}</p>
+            <form method="POST" action="{% url 'update_profile' %}">
+                {% csrf_token %}
+                <label for="color">Цвет фона профиля:</label>
+                <input type="color" id="color" name="color" value="{{ user_site.color }}">
+                <button type="submit">Сохранить изменения</button>
+            </form>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Выйти</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

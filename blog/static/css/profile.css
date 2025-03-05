@@ -1,0 +1,77 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Контейнер профиля */
+.profile-container {
+    text-align: center;
+    width: 100%;
+}
+
+/* Карточка профиля */
+.profile-card {
+    background-color: #d8f3dc;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+/* Аватар пользователя */
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #2d6a4f;
+    margin-bottom: 15px;
+}
+
+/* Заголовок */
+h1 {
+    color: #2d6a4f;
+}
+
+/* Кнопки */
+button {
+    background-color: #40916c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1b4332;
+}
+
+/* Кнопка выхода */
+.logout-btn {
+    background-color: #d62828;
+}
+
+.logout-btn:hover {
+    background-color: #a41e1e;
+}
+
+/* Поле выбора цвета */
+input[type="color"] {
+    border: none;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    margin-top: 10px;
+}
